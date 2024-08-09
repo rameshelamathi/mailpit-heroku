@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+echo "Downloading mailpit"
+
+BUILD_DIR=$1
+
+# Get the URL of the latest Linux release.
+URL=$(curl -L -s https://api.github.com/repos/axllent/mailpit/releases/latest | grep -o -E "https://(.*)mailpit-linux-amd64.tar.gz")
+
+# Download and extract the release to the build dir.
+curl -L -s $URL | tar xvz -C $BUILD_DIR
+
+# Generate the config file.
+#cd $BUILD_DIR && ./mailpit

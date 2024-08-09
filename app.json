@@ -1,0 +1,43 @@
+{
+  "name": "mailpit",
+  "description": "Email Testing Application",
+  "repository": "https://github.com/rameshelamathi/mailpit-heroku",
+  "logo": "https://mailpit.axllent.org/images/mailpit.svg",
+  "website": "https://mailpit.axllent.org",
+  "keywords": ["email testing"],
+
+  "buildpacks": [
+    {
+      "url": "https://github.com/rameshelamathi/mailpit-heroku"
+    }
+  ],
+
+  "env": {
+    "ROOT_URL": {
+      "description": "URL of the installation",
+      "required": true,
+      "value": "https://yourlistmonk.herokuapp.com"
+    },
+    "MP_SENDMAIL_SMTP_ADDR": {
+      "description": "SMTP Address",
+      "required": false,
+      "value": "mailpit:1025"
+    },
+    "MP_SENDMAIL_FROM": {
+      "description": "From Address",
+      "required": false,
+      "value": "user@host"
+    },
+    "MP_UI_AUTH": {
+      "description": "Allowed users",
+      "required": true,
+      "value": "user1:password1 user2:password2"
+    }
+  },
+
+  "scripts": {
+    "postdeploy": "./install-db.sh"
+  },
+
+  "success_url": "/admin/settings"
+}
